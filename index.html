@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Amazon Tracker</title>
+    
+    <!-- Google Fonts: Poppins (Clean and Modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6c5ce7; /* Soothing Purple */
+            --secondary: #a29bfe;
+            --accent: #ff7675;
+            --bg: #f8f9fe;
+            --text: #2d3436;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(108, 92, 231, 0.1) 0px, transparent 50%),
+                radial-gradient(at 90% 80%, rgba(255, 118, 117, 0.08) 0px, transparent 50%);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .main-container {
+            display: flex;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Side Panel for Aesthetics/Illustrations */
+        .side-panel {
+            flex: 1;
+            background-color: var(--secondary);
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .side-panel h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .side-panel p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Main Illustration (SVG) */
+        .main-hero-svg {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+        }
+
+        /* The Form Container */
+        .form-container {
+            flex: 1.2;
+            padding: 40px 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .field {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-weight: 400;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Modern Input Styles */
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            background-color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+        }
+
+        select {
+            appearance: none; /* Hide default arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 18px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Beautiful Button */
+        button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--primary);
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button:disabled {
+            background-image: linear-gradient(135deg, #bbb, #ddd);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Status Message */
+        #status {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 400;
+            min-height: 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column-reverse;
+                max-width: 450px;
+            }
+
+            .side-panel {
+                padding: 30px;
+            }
+            
+            .side-panel h1 { font-size: 1.8rem; }
+            .main-hero-svg { max-width: 150px; }
+
+            .form-container {
+                padding: 30px 25px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <!-- Left Side: Aesthetic Panel -->
+    <div class="side-panel">
+        <h1>Sync. <br>Track. Save.</h1>
+        <p>Log your Amazon transactions effortlessly to your monthly sheet.</p>
+        
+        <!-- Beautiful SVG Hero Illustration -->
+        <svg class="main-hero-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:0.2" />
+                    <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:0.05" />
+                </linearGradient>
+            </defs>
+            <circle cx="250" cy="250" r="230" fill="url(#grad1)" stroke="white" stroke-width="2" stroke-dasharray="10 10"/>
+            <rect x="150" y="100" width="200" height="300" rx="20" fill="white" />
+            <rect x="180" y="140" width="140" height="20" rx="5" fill="#f0f0f0"/>
+            <rect x="180" y="180" width="100" height="20" rx="5" fill="#e0e0e0"/>
+            <circle cx="250" cy="350" r="30" fill="#ff7675"/>
+            <path d="M235 350 L245 360 L265 340" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+    </div>
+
+    <!-- Right Side: The Form -->
+    <div class="form-container">
+        <h2>
+            <!-- Tracking Icon SVG -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            New Entry
+        </h2>
+
+        <form id="amazonForm">
+            <!-- Date Field with Calendar Icon -->
+            <div class="field">
+                <label>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Transaction Date
+                </label>
+                <input type="date" id="date" name="Date" required>
+            </div>
+            
+            <!-- Category Field with Tag Icon -->
+            <div class="field">
+                <label>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+                    Category
+                </label>
+                <select id="category" name="Category" required>
+                    <option value="" disabled selected hidden>Choose Category...</option>
+                    <option value="Grocery">🛒 Grocery</option>
+                    <option value="Bills">🧾 Bills</option>
+                    <option value="Fast Tag">🚗 Fast Tag</option>
+                    <option value="Personal">🎁 Personal</option>
+                    <option value="Other">💡 Other</option>
+                </select>
+            </div>
+
+            <!-- Amount Field with Rupee Icon -->
+            <div class="field">
+                <label>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    Amount (₹)
+                </label>
+                <input type="number" id="amount" name="Amount" placeholder="e.g., 1499.00" step="0.01" required>
+            </div>
+
+            <!-- Notes Field with Message Icon -->
+            <div class="field">
+                <label>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Notes (Optional)
+                </label>
+                <textarea id="notes" name="Notes" rows="2" placeholder="Item name, order ID, or special details..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Log to Google Sheets</button>
+        </form>
+        <div id="status"></div>
+    </div>
+</div>
+
+<script>
+    // --- !!! PASTE YOUR DEPLOYED WEB APP URL HERE !!! ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxmw_OWmQyy_Eh4nIeQA_1nCwVy4Wc9YTKL4nuSRtPnISREB0oVzBBYAqBVPmBZB1h7HQ/exec'; 
+    // --- -------------------------------------------- ---
+
+    const form = document.getElementById('amazonForm');
+    const status = document.getElementById('status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Disable button to prevent multiple submissions
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Syncing... Please wait.";
+        
+        // Setup visual feedback
+        status.innerHTML = "⚡ Sending data to the cloud...";
+        status.style.color = "var(--primary)";
+        status.style.fontWeight = "600";
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                // Success State
+                status.innerHTML = "✨ Success! Entry saved to your monthly sheet.";
+                status.style.color = "green";
+                form.reset();
+                resetForm(); // Reset date and button state
+            })
+            .catch(error => {
+                // Error State
+                status.innerHTML = "❌ Connection Error. Please try again.";
+                status.style.color = "var(--accent)";
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Retry Log to Sheets";
+            });
+    });
+
+    // Helper: Reset date to today and re-enable button
+    function resetForm() {
+        document.getElementById('date').valueAsDate = new Date();
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Log to Google Sheets";
+        // Clear status after 5 seconds
+        setTimeout(() => { status.innerHTML = ""; }, 5000);
+    }
+
+    // Initialize date on load
+    document.getElementById('date').valueAsDate = new Date();
+</script>
+
+</body>
+</html>
